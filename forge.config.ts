@@ -44,6 +44,7 @@ const config: ForgeConfig = {
           owner: "alikhalilifar",
           name: "persian-twitch-client",
         },
+        authToken: process.env.GITHUB_TOKEN,
         prerelease: true,
       },
     },
