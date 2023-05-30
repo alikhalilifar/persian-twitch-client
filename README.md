@@ -14,7 +14,7 @@ Head to [Releases](https://github.com/alikhalilifar/persian-twitch-client/releas
 ## FAQ
 
 1. Does views count in this application?
-⋅⋅*Yes, since it's connecting to Twitch's edge server it is expected for views to be counted.
+Yes, since it's connecting to Twitch's edge server it is expected for views to be counted.
 
 2. How do I watch Persian streams using this application?
 
