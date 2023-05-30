@@ -5,18 +5,38 @@ import { Link } from "react-router-dom";
 export const Streamers = () => {
   const [streamers, setStreamers] = React.useState([]);
 
+  const getStreamers = async () => {
+    const data = await (window as any).electronAPI?.getStreamers();
+    if (!data) return;
+    setStreamers(data?.data);
+  };
+
   React.useEffect(() => {
+    let interval: any;
+
     (async () => {
       try {
-        const data = await (window as any).electronAPI?.getStreamers();
-        if (!data) return;
-        setStreamers(data?.data);
+        getStreamers();
+
+        interval = setInterval(() => {
+          getStreamers();
+        }, 10000);
       } catch (err) {
         console.error(err);
         toast.error("Failed to get streamers");
       }
     })();
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+    });
+  };
 
   return (
     <div className="p-8">
@@ -51,7 +71,7 @@ export const Streamers = () => {
               className="bg-zinc-800 rounded-2xl overflow-hidden shadow-paxit-1"
               key={streamer.displayName}
             >
-              <Link to={`${streamer.login}`}>
+              <Link to={`/${streamer.login}`} onClick={scrollToTop}>
                 <div>
                   <div className="relative z-100">
                     {/* <a
