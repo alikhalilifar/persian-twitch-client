@@ -16,9 +16,11 @@ Head to [Releases](https://github.com/alikhalilifar/persian-twitch-client/releas
 1. Does views count in this application?
 
 ...Yes, since it's connecting to Twitch's edge server it is expected for views to be counted.
+
 2. How do I watch Persian streams using this application?
 
 ...After installing the application, launch it and you will be able to browse and watch Persian streams directly within the application.
+
 3. Can I use this application on platforms other than Windows?
 
 ...Currently, the application is available for Windows only. However, it also supports macOS secretly, if you clone the repo you should be able to compile it on Mac.
