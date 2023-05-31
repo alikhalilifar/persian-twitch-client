@@ -1133,6 +1133,11 @@
   dependencies:
     "@types/node" "*"
 
+"@types/tmi.js@1.8.3":
+  version "1.8.3"
+  resolved "https://registry.yarnpkg.com/@types/tmi.js/-/tmi.js-1.8.3.tgz#db81ad42f7f71dce0aa9dfa5f14bf7c49af4cad2"
+  integrity sha512-piKPU1DF+Lxnh9BV0gVpbJIMnKOQT6zT0o6NLE0DZgHNW7fGxReRRSp987+Ph1aYiyNWXXbxAeQAovTlEYC1hw==
+
 "@types/ws@^8.5.1":
   version "8.5.4"
   resolved "https://registry.yarnpkg.com/@types/ws/-/ws-8.5.4.tgz#bb10e36116d6e570dd943735f86c933c1587b8a5"

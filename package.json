@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "@electron-forge/publisher-github": "6.1.1",
+    "@types/tmi.js": "1.8.3",
     "autoprefixer": "10.4.14",
     "electron-squirrel-startup": "1.0.0",
     "postcss": "8.4.24",
