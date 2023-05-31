@@ -27,3 +27,25 @@
     @apply bg-zinc-500;
   }
 }
+
+:root {
+  --fadeIn: 0.2s;
+}
+
+.fadeIn {
+  animation: fadeIn ease var(--fadeIn);
+  -webkit-animation: fadeIn ease var(--fadeIn);
+  -moz-animation: fadeIn ease var(--fadeIn);
+  -o-animation: fadeIn ease var(--fadeIn);
+  -ms-animation: fadeIn ease var(--fadeIn);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

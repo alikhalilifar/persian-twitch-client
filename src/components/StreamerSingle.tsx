@@ -14,7 +14,7 @@ export const StreamerSingle = () => {
   const [selectedQuality, setSelectedQuality] = useState<number>(2);
   const [retrievedM3u8, setRetrievedM3u8] = useState<any>(null);
 
-  const quality = ["۱۰۸۰", "۷۲۰", "۴۸۰", "۳۶۰", "۱۶۰", "فقط صدا"];
+  const quality = ["1080", "720", "480", "360", "160", "Sound"];
 
   useEffect(() => {
     if (!streamUrls) {
@@ -50,7 +50,25 @@ export const StreamerSingle = () => {
   return (
     <div className="scroll_enabled">
       <div className="h-[100vh] flex">
-        <div className="bg-black">
+        <div className="bg-black group">
+          <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
+            {quality.map((q, i) => (
+              <button
+                className={`${
+                  selectedQuality === i
+                    ? "bg-white backdrop-blur-lg text-black"
+                    : "border border-white text-white"
+                } rounded-md px-2 py-1`}
+                key={i}
+                onClick={() => {
+                  setSelectedQuality(i);
+                }}
+              >
+                {q}
+              </button>
+            ))}
+          </div>
+
           {retrievedM3u8 && (
             <ReactHlsPlayer
               src={retrievedM3u8}
