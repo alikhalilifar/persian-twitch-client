@@ -6,9 +6,17 @@ export const Streamers = () => {
   const [streamers, setStreamers] = React.useState([]);
 
   const getStreamers = async () => {
-    const data = await (window as any).electronAPI?.getStreamers();
-    if (!data) return;
-    setStreamers(data?.data);
+    try {
+      const data = await (window as any).electronAPI?.getStreamers();
+      if (!data) return;
+      setStreamers(data?.data);
+    } catch (err) {
+      console.error(err);
+      console.log("Retrying in 10 seconds...");
+      setTimeout(() => {
+        getStreamers();
+      }, 10000);
+    }
   };
 
   React.useEffect(() => {
@@ -20,10 +28,9 @@ export const Streamers = () => {
 
         interval = setInterval(() => {
           getStreamers();
-        }, 10000);
+        }, 60000);
       } catch (err) {
         console.error(err);
-        toast.error("Failed to get streamers");
       }
     })();
 

@@ -14,16 +14,20 @@ if (require("electron-squirrel-startup")) {
 updateElectron();
 
 async function getStreamers() {
-  const streamers = await fetch("https://www.paxit.ir/api/streamers", {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  try {
+    const streamers = await fetch("https://www.paxit.ir/api/streamers", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
-  const streamersJson = await streamers.json();
+    const streamersJson = await streamers.json();
 
-  return streamersJson;
+    return Promise.resolve(streamersJson);
+  } catch (error) {
+    return Promise.reject(error);
+  }
 }
 
 const createWindow = (): void => {

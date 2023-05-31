@@ -30,3 +30,23 @@ export type StreamUrls = [
     url: string;
   }
 ];
+
+export type EmoteObject = {
+  actor_id: null;
+  flags: number;
+  id: string;
+  name: string;
+  data: {
+    animated: boolean;
+    host: {
+      url: string;
+      files: {
+        name: string;
+        static_name: string;
+        width: number;
+        height: number;
+      }[];
+    };
+  };
+  timestamp: number;
+};

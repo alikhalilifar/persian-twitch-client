@@ -3,6 +3,7 @@ import { Streamers } from "./Streamers";
 import { useEffect, useRef, useState } from "react";
 import { StreamUrls } from "../types/types";
 import ReactHlsPlayer from "react-hls-player/dist";
+import { Chatbox } from "./Chatbox";
 
 export const StreamerSingle = () => {
   const { streamer } = useParams<{ streamer: string }>();
@@ -44,22 +45,27 @@ export const StreamerSingle = () => {
   }, [streamer]);
 
   return (
-    <>
-      <div className="h-[100vh]">
-        {retrievedM3u8 && (
-          <ReactHlsPlayer
-            src={retrievedM3u8}
-            autoPlay={true}
-            controls={true}
-            className="h-[100vh] w-[100vw]"
-            playerRef={playerRef}
-            hlsConfig={{
-              startPosition: 10,
-            }}
-          />
-        )}
+    <div className="scroll_enabled">
+      <div className="h-[100vh] flex">
+        <div className="bg-black">
+          {retrievedM3u8 && (
+            <ReactHlsPlayer
+              src={retrievedM3u8}
+              autoPlay={true}
+              controls={true}
+              className="h-[100vh] w-[calc(100vw-300px)]"
+              playerRef={playerRef}
+              hlsConfig={{
+                startPosition: 10,
+              }}
+            />
+          )}
+        </div>
+        <div className="bg-zinc-900 w-[300px] h-[100vh] flex justify-end overflow-y-auto">
+          <Chatbox id={streamer} />
+        </div>
       </div>
       <Streamers />
-    </>
+    </div>
   );
 };

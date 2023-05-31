@@ -54,7 +54,9 @@
     "react-hls-player": "3.0.7",
     "react-hot-toast": "2.4.1",
     "react-router-dom": "6.11.2",
+    "react-string-replace": "1.1.0",
     "tailwindcss": "3.3.2",
+    "tmi.js": "1.8.5",
     "update-electron-app": "2.0.1"
   },
   "repository": {
