@@ -15,12 +15,15 @@ updateElectron();
 
 async function getStreamers() {
   try {
-    const streamers = await fetch("https://www.paxit.ir/api/streamers", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+    const streamers = await fetch(
+      "https://api.twitchfa.com/v2/twitch/streamers?page=1&limit=100",
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
 
     const streamersJson = await streamers.json();
 

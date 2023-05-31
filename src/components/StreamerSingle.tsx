@@ -6,7 +6,10 @@ import ReactHlsPlayer from "react-hls-player/dist";
 import { Chatbox } from "./Chatbox";
 
 export const StreamerSingle = () => {
-  const { streamer } = useParams<{ streamer: string }>();
+  const { streamer, twitchId } = useParams<{
+    streamer: string;
+    twitchId: string;
+  }>();
   const [streamUrls, setStreamUrls] = useState<StreamUrls>();
   const [selectedQuality, setSelectedQuality] = useState<number>(2);
   const [retrievedM3u8, setRetrievedM3u8] = useState<any>(null);

@@ -1,15 +1,15 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom/client";
-import { Routes, Route, HashRouter } from "react-router-dom";
+import { Routes, Route, HashRouter, BrowserRouter } from "react-router-dom";
 import { Layout, Streamers, StreamerSingle } from "./components";
 
 const App = () => {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route path={"/"} element={<Layout />}>
           <Route index element={<Streamers />} />
-          <Route path=":streamer" element={<StreamerSingle />} />
+          <Route path=":streamer/:twitchId" element={<StreamerSingle />} />
         </Route>
       </Routes>
     </>

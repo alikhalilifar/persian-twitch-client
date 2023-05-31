@@ -55,10 +55,7 @@ export const Streamers = () => {
           Array(10)
             .fill(0)
             .map((_, i) => (
-              <li
-                className="rounded-2xl overflow-hidden shadow-paxit-1"
-                key={i}
-              >
+              <li className="rounded-2xl overflow-hidden" key={i}>
                 <div>
                   <div className="relative z-100">
                     <div className="animate-pulse bg-zinc-500 h-[275px] w-full"></div>
@@ -75,10 +72,15 @@ export const Streamers = () => {
         {streamers &&
           streamers.map((streamer) => (
             <li
-              className="bg-zinc-800 rounded-2xl overflow-hidden shadow-paxit-1"
+              className="bg-zinc-800 rounded-2xl overflow-hidden"
               key={streamer.displayName}
             >
-              <Link to={`/${streamer.login}`} onClick={scrollToTop}>
+              <Link
+                to={{
+                  pathname: `/${streamer.login}/${streamer?.twitchId}`,
+                }}
+                onClick={scrollToTop}
+              >
                 <div>
                   <div className="relative z-100">
                     {/* <a

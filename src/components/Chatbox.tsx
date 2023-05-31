@@ -2,6 +2,7 @@ import tmi from "tmi.js";
 import { useEffect, useState } from "react";
 import { EmoteObject } from "../types/types";
 import reactStringReplace from "react-string-replace";
+import { useParams } from "react-router-dom";
 
 export const Chatbox = ({ id }: { id: string }) => {
   const [messages, setMessages] = useState<
@@ -19,6 +20,10 @@ export const Chatbox = ({ id }: { id: string }) => {
       height: number;
     }[]
   >();
+  const { streamer, twitchId } = useParams<{
+    streamer: string;
+    twitchId: string;
+  }>();
 
   useEffect(() => {
     if (!id) {
@@ -57,7 +62,9 @@ export const Chatbox = ({ id }: { id: string }) => {
     setMessages([]);
 
     const get7tvEmotes = async () => {
-      const response = await fetch(`https://7tv.io/v3/users/twitch/21841789`);
+      const response = await fetch(
+        `https://7tv.io/v3/users/twitch/${twitchId}`
+      );
       const data = await response.json();
       if (!data) return;
       const emotes = data?.emote_set?.emotes || [];
