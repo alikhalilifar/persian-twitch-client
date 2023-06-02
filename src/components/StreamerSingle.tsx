@@ -68,7 +68,6 @@ export const StreamerSingle = () => {
               </button>
             ))}
           </div>
-          <div></div>
           {retrievedM3u8 && (
             <ReactHlsPlayer
               src={retrievedM3u8}
