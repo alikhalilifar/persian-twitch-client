@@ -1,9 +1,12 @@
 import * as React from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
+import {TStreamer} from "../types/types";
 
 export const Streamers = () => {
-  const [streamers, setStreamers] = React.useState([]);
+  const [streamers, setStreamers] = React.useState<TStreamer[]>([]);
+  const [searchArray, setSearchArray] = React.useState<TStreamer[]>([]);
+  const [searchValue, setSearchValue] = React.useState<string>("");
 
   const getStreamers = async () => {
     try {
@@ -39,6 +42,13 @@ export const Streamers = () => {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (searchValue !== "") {
+      const foundedStreamer: TStreamer[] = streamers.filter((streamer) => streamer.displayName.toLowerCase().includes(searchValue.toLowerCase()))
+      setSearchArray(foundedStreamer)
+    }
+  }, [searchValue])
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -46,7 +56,12 @@ export const Streamers = () => {
   };
 
   return (
-    <div className="p-8">
+
+    <div className="p-8 pt-0">
+      <nav className="h-14 w-full py-3 mb-6">
+        <input type="search" className="w-full h-full px-4 py-2 bg-zinc-600 rounded-xl outline-none text-white font-medium"
+               onChange={(e) => setSearchValue(e.target.value)}/>
+      </nav>
       <ul
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 xl:gap-12"
         style={{ direction: "ltr" }}
@@ -69,8 +84,7 @@ export const Streamers = () => {
               </li>
             ))}
 
-        {streamers &&
-          streamers.map((streamer) => (
+        {(searchValue === "" ? streamers : searchArray).map((streamer) => (
             <li
               className="bg-zinc-800 rounded-2xl overflow-hidden"
               key={streamer.displayName}

@@ -50,3 +50,18 @@ export type EmoteObject = {
   };
   timestamp: number;
 };
+
+export type TStreamer = {
+  displayName: string;
+  gameId: string;
+  gameName: string;
+  login: string;
+  platform: string;
+  profileUrl: string;
+  streamId: string;
+  thumbnailUrl: string;
+  title: string;
+  twitchId: string;
+  uptime: number;
+  viewers: number;
+}
