@@ -1,7 +1,7 @@
 import * as React from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
-import {TStreamer} from "../types/types";
+import { TStreamer } from "../types/types";
 
 export const Streamers = () => {
   const [streamers, setStreamers] = React.useState<TStreamer[]>([]);
@@ -44,10 +44,12 @@ export const Streamers = () => {
 
   React.useEffect(() => {
     if (searchValue !== "") {
-      const foundedStreamer: TStreamer[] = streamers.filter((streamer) => streamer.displayName.toLowerCase().includes(searchValue.toLowerCase()))
-      setSearchArray(foundedStreamer)
+      const foundedStreamer: TStreamer[] = streamers.filter((streamer) =>
+        streamer.displayName.toLowerCase().includes(searchValue.toLowerCase())
+      );
+      setSearchArray(foundedStreamer);
     }
-  }, [searchValue])
+  }, [searchValue]);
 
   const scrollToTop = () => {
     window.scrollTo({
@@ -56,11 +58,14 @@ export const Streamers = () => {
   };
 
   return (
-
     <div className="p-8 pt-0">
-      <nav className="h-14 w-full py-3 mb-6">
-        <input type="search" className="w-full h-full px-4 py-2 bg-zinc-600 rounded-xl outline-none text-white font-medium"
-               onChange={(e) => setSearchValue(e.target.value)}/>
+      <nav className="h-18 w-full py-8">
+        <input
+          type="search"
+          className="w-full h-full px-4 py-2 bg-zinc-600 rounded-xl outline-none text-white font-medium"
+          placeholder="Search for a streamer..."
+          onChange={(e) => setSearchValue(e.target.value)}
+        />
       </nav>
       <ul
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 xl:gap-12"
@@ -85,91 +90,89 @@ export const Streamers = () => {
             ))}
 
         {(searchValue === "" ? streamers : searchArray).map((streamer) => (
-            <li
-              className="bg-zinc-800 rounded-2xl overflow-hidden"
-              key={streamer.displayName}
+          <li
+            className="bg-zinc-800 rounded-2xl overflow-hidden"
+            key={streamer.displayName}
+          >
+            <Link
+              to={{
+                pathname: `/${streamer.login}/${streamer?.twitchId}`,
+              }}
+              onClick={scrollToTop}
             >
-              <Link
-                to={{
-                  pathname: `/${streamer.login}/${streamer?.twitchId}`,
-                }}
-                onClick={scrollToTop}
-              >
-                <div>
-                  <div className="relative z-100">
-                    {/* <a
+              <div>
+                <div className="relative z-100">
+                  {/* <a
                       href={`https://sub.dono.gg/${streamer?.login}`}
                       className="buy-subscription px-2 py-1 absolute right-0 mr-3 mt-3 rounded-lg items-center gap-2 inline-flex bg-[#111827]/80"
                     >
                       <div className="text-white text-xs">خرید اشتراک</div>
                     </a> */}
 
-                    <div className="viewer px-2 py-1 absolute ml-3 mt-3 rounded-lg items-center gap-2 inline-flex bg-[#111827]/80">
-                      <svg
-                        width="14"
-                        height="14"
-                        viewBox="0 0 14 14"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <g clipPath="url(#clip0_775_2030)">
-                          <path
-                            fillRule="evenodd"
-                            clipRule="evenodd"
-                            d="M1.24687 0L0.306244 2.40297V12.2238H3.64962V14H5.53021L7.30646 12.2238H10.0229L13.6795 8.56713V0H1.24687ZM12.4259 7.94062L10.3359 10.0297H6.99277L5.21653 11.8059V10.0297H2.39574V1.25344H12.4254V7.94062H12.4259ZM10.3359 3.65662V7.31325H9.08249V3.65662H10.3359ZM6.99256 3.65662V7.31325H5.73912V3.65662H6.99256Z"
-                            fill="white"
-                          />
-                        </g>
-                        <defs>
-                          <clipPath id="clip0_775_2030">
-                            <rect width="14" height="14" fill="white" />
-                          </clipPath>
-                        </defs>
-                      </svg>
-
-                      <div className="text-white text-xs">
-                        {streamer.viewers}
-                      </div>
-                    </div>
-                    <img
-                      src={streamer?.thumbnailUrl
-                        ?.replace("{width}", "440")
-                        .replace("{height}", "248")}
-                      alt={streamer?.displayName}
-                      className="w-full object-cover"
-                    />
-                  </div>
-                  <div className="p-4 text-left" style={{ direction: "ltr" }}>
-                    <div className="flex ">
-                      <div className="relative z-10 items-center gap-2 inline-flex -mt-10 pl-1 pr-4 shadow-lg mb-4 backdrop-blur-2xl rounded-full p-1">
-                        <img
-                          src={streamer?.profileUrl}
-                          alt={streamer?.displayName}
-                          className="w-10 h-10 rounded-full"
+                  <div className="viewer px-2 py-1 absolute ml-3 mt-3 rounded-lg items-center gap-2 inline-flex bg-[#111827]/80">
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 14 14"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <g clipPath="url(#clip0_775_2030)">
+                        <path
+                          fillRule="evenodd"
+                          clipRule="evenodd"
+                          d="M1.24687 0L0.306244 2.40297V12.2238H3.64962V14H5.53021L7.30646 12.2238H10.0229L13.6795 8.56713V0H1.24687ZM12.4259 7.94062L10.3359 10.0297H6.99277L5.21653 11.8059V10.0297H2.39574V1.25344H12.4254V7.94062H12.4259ZM10.3359 3.65662V7.31325H9.08249V3.65662H10.3359ZM6.99256 3.65662V7.31325H5.73912V3.65662H6.99256Z"
+                          fill="white"
                         />
+                      </g>
+                      <defs>
+                        <clipPath id="clip0_775_2030">
+                          <rect width="14" height="14" fill="white" />
+                        </clipPath>
+                      </defs>
+                    </svg>
 
-                        <h3 className="text-white font-bold text-sm">
-                          {streamer.displayName}
-                        </h3>
-                      </div>
+                    <div className="text-white text-xs">{streamer.viewers}</div>
+                  </div>
+                  <img
+                    src={streamer?.thumbnailUrl
+                      ?.replace("{width}", "440")
+                      .replace("{height}", "248")}
+                    alt={streamer?.displayName}
+                    className="w-full object-cover"
+                  />
+                </div>
+                <div className="p-4 text-left" style={{ direction: "ltr" }}>
+                  <div className="flex ">
+                    <div className="relative z-10 items-center gap-2 inline-flex -mt-10 pl-1 pr-4 shadow-lg mb-4 backdrop-blur-2xl rounded-full p-1">
+                      <img
+                        src={streamer?.profileUrl}
+                        alt={streamer?.displayName}
+                        className="w-10 h-10 rounded-full"
+                      />
+
+                      <h3 className="text-white font-bold text-sm">
+                        {streamer.displayName}
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1">
+                    <div className="text-white font-medium break-all">
+                      {streamer.title?.length > 30
+                        ? streamer.title?.slice(0, 30) + "..." // 50 is the max length of the title
+                        : streamer.title}
                     </div>
 
-                    <div className="flex flex-col gap-1">
-                      <div className="text-white font-medium break-all">
-                        {streamer.title?.length > 30
-                          ? streamer.title?.slice(0, 30) + "..." // 50 is the max length of the title
-                          : streamer.title}
-                      </div>
-
-                      <div className="text-sm text-zinc-400 flex items-center gap-2">
-                        {streamer.gameName}
-                      </div>
+                    <div className="text-sm text-zinc-400 flex items-center gap-2">
+                      {streamer.gameName}
                     </div>
                   </div>
                 </div>
-              </Link>
-            </li>
-          ))}
+              </div>
+            </Link>
+          </li>
+        ))}
       </ul>
     </div>
   );
