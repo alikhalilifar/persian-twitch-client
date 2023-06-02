@@ -78,7 +78,6 @@ export const Chatbox = ({ id }: { id: string }) => {
           height: emote?.data?.host?.files?.[emoteIndex]?.height / 2,
         };
       });
-      console.log(emoteList);
       setEmoteList(emoteList);
     };
 
@@ -120,7 +119,7 @@ export const Chatbox = ({ id }: { id: string }) => {
       }}
     >
       {
-        <div className="flex flex-col-reverse gap-4 text-sm w-full h-full p-4">
+        <div className="flex flex-col-reverse gap-4 text-sm w-full h-full p-4 overflow-y-scroll">
           {messages &&
             messages?.map((m, i) => (
               <div key={i} className="gap-4">
@@ -133,7 +132,7 @@ export const Chatbox = ({ id }: { id: string }) => {
                   >
                     {m?.username}:{" "}
                   </span>
-                  <span className="flex gap-1 break-words">
+                  <span className="flex gap-1 break-words flex-wrap">
                     {messageProcessor(m?.message)}
                   </span>
                 </div>

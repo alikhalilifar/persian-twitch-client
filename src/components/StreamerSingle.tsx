@@ -12,7 +12,7 @@ export const StreamerSingle = () => {
   }>();
   const [streamUrls, setStreamUrls] = useState<StreamUrls>();
   const [selectedQuality, setSelectedQuality] = useState<number>(2);
-  const [retrievedM3u8, setRetrievedM3u8] = useState<any>(null);
+  const [retrievedM3u8, setRetrievedM3u8] = useState<string | null>(null);
 
   const quality = ["1080", "720", "480", "360", "160", "Sound"];
 
@@ -68,7 +68,7 @@ export const StreamerSingle = () => {
               </button>
             ))}
           </div>
-
+          <div></div>
           {retrievedM3u8 && (
             <ReactHlsPlayer
               src={retrievedM3u8}
