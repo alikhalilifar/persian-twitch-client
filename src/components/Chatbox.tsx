@@ -3,12 +3,14 @@ import { useEffect, useState } from "react";
 import { EmoteObject } from "../types/types";
 import reactStringReplace from "react-string-replace";
 import { useParams } from "react-router-dom";
+import { Badge } from "./Badge";
 
 export const Chatbox = ({ id }: { id: string }) => {
   const [messages, setMessages] = useState<
     {
       username: string;
       color: string;
+      badges: Record<string, string>;
       message: string;
     }[]
   >();
@@ -47,6 +49,7 @@ export const Chatbox = ({ id }: { id: string }) => {
         {
           username,
           color: tags?.color,
+          badges: tags.badges,
           message,
         },
         ...(messages || []),
@@ -125,12 +128,16 @@ export const Chatbox = ({ id }: { id: string }) => {
               <div key={i} className="gap-4">
                 <div className="gap-1 text-white flex flex-wrap">
                   <span
-                    className="font-bold"
+                    className="font-bold flex items-center space-x-1"
                     style={{
                       color: m?.color,
                     }}
                   >
-                    {m?.username}:{" "}
+                    {m?.badges &&
+                      Object.keys(m?.badges).map((name) => (
+                        <Badge name={name} />
+                      ))}
+                    <div>{m?.username}: </div>
                   </span>
                   <span className="flex gap-1 break-words flex-wrap">
                     {messageProcessor(m?.message)}
