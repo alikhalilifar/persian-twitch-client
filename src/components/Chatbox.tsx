@@ -25,6 +25,8 @@ export const Chatbox = ({ id }: { id: string }) => {
     twitchId: string;
   }>();
 
+  const [chatConnected, setChatConnected] = useState<boolean>(false);
+
   useEffect(() => {
     if (!id) {
       return;
@@ -40,6 +42,10 @@ export const Chatbox = ({ id }: { id: string }) => {
     });
 
     client.connect();
+
+    client.on("connected", () => {
+      setChatConnected(true);
+    });
 
     client.on("message", (channel: any, tags: any, message: any, self: any) => {
       const username = `${tags["display-name"]}`;
@@ -138,6 +144,15 @@ export const Chatbox = ({ id }: { id: string }) => {
                 </div>
               </div>
             ))}
+          <div className="gap-4">
+            <div className="gap-1 text-white flex flex-wrap">
+              <span className="flex gap-1 break-words flex-wrap">
+                {chatConnected
+                  ? "Welcome to the chat room!"
+                  : "Connecting to chat..."}
+              </span>
+            </div>
+          </div>
         </div>
       }
     </div>
