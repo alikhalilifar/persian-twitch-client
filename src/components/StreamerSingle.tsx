@@ -50,7 +50,7 @@ export const StreamerSingle = () => {
   return (
     <div className="scroll_enabled">
       <div className="h-[100vh] flex">
-        <div className="bg-black group">
+        <div className="bg-black group w-[calc(100%-300px)]">
           <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
             {quality.map((q, i) => (
               <button
