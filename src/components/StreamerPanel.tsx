@@ -29,6 +29,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
         if (panel?.__typename !== "DefaultPanel") return;
         return (
           <div key={i} className="flex flex-col gap-2">
+            <div className="text-white text-xl font-bold">{panel.title}</div>
             <a
               href={panel.linkURL}
               target="_blank"
@@ -36,7 +37,6 @@ export const StreamerPanel = ({ id }: { id: string }) => {
             >
               <img src={panel.imageURL} alt={panel.title} className="w-full" />
             </a>
-            <div className="text-white text-xl font-bold">{panel.title}</div>
             <div className="text-white text-sm">{panel.description}</div>
           </div>
         );

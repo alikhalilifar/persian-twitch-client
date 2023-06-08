@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { Streamers } from "./Streamers";
 import { useEffect, useRef, useState } from "react";
 import { StreamUrls } from "../types/types";
@@ -59,10 +59,27 @@ export const StreamerSingle = () => {
   return (
     <div>
       <div className="h-[100vh] flex">
-        <div className="bg-black group w-[calc(100%-300px)]">
-          {retrievedM3u8 && (
-            <>
-              <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
+        <div className="bg-black group w-[calc(100%-300px)] relative">
+          <div className="gap-2 mb-4 hidden group-hover:flex justify-between w-full absolute top-0 left-0 z-10 fadeIn p-4">
+            <Link to="/">
+              <div className="text-white rounded-md py-1 flex items-center gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-6 h-6"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M7.72 12.53a.75.75 0 010-1.06l7.5-7.5a.75.75 0 111.06 1.06L9.31 12l6.97 6.97a.75.75 0 11-1.06 1.06l-7.5-7.5z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+                Back to Streamers
+              </div>
+            </Link>
+            {retrievedM3u8 && (
+              <div className="flex gap-2">
                 {quality.map((q, i) => (
                   <button
                     className={`${
@@ -79,18 +96,19 @@ export const StreamerSingle = () => {
                   </button>
                 ))}
               </div>
-
-              <ReactHlsPlayer
-                src={retrievedM3u8}
-                autoPlay={true}
-                controls={true}
-                className="h-[100vh] w-[calc(100vw-300px)]"
-                playerRef={playerRef}
-                hlsConfig={{
-                  startPosition: 10,
-                }}
-              />
-            </>
+            )}
+          </div>
+          {retrievedM3u8 && (
+            <ReactHlsPlayer
+              src={retrievedM3u8}
+              autoPlay={true}
+              controls={true}
+              className="h-[100vh] w-[calc(100vw-300px)]"
+              playerRef={playerRef}
+              hlsConfig={{
+                startPosition: 10,
+              }}
+            />
           )}
         </div>
         <div className="bg-zinc-900 w-[300px] h-[100vh] flex justify-end overflow-y-auto">
