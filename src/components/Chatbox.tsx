@@ -125,10 +125,10 @@ export const Chatbox = ({ id }: { id: string }) => {
       }}
     >
       {
-        <div className="flex flex-col-reverse gap-4 text-sm w-full h-full p-4 overflow-y-scroll">
+        <div className="flex flex-col-reverse gap-3 text-sm w-full h-full py-4 px-0 overflow-y-scroll">
           {messages &&
             messages?.map((m, i) => (
-              <div key={i} className="gap-4">
+              <div key={i} className="gap-4 w-full break-all">
                 <div className="gap-1 text-white flex flex-wrap">
                   <span
                     className="font-bold"
@@ -146,7 +146,7 @@ export const Chatbox = ({ id }: { id: string }) => {
             ))}
           <div className="gap-4">
             <div className="gap-1 text-white flex flex-wrap">
-              <span className="flex gap-1 break-words flex-wrap">
+              <span className="flex gap-1 break-words flex-wrap opacity-50">
                 {chatConnected
                   ? "Welcome to the chat room!"
                   : "Connecting to chat..."}
