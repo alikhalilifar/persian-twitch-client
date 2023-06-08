@@ -2,11 +2,13 @@ import * as React from "react";
 import { toast } from "react-hot-toast";
 import { Link } from "react-router-dom";
 import { TStreamer } from "../types/types";
+import { StreamerContext } from "../app";
 
 export const Streamers = () => {
   const [streamers, setStreamers] = React.useState<TStreamer[]>([]);
   const [searchArray, setSearchArray] = React.useState<TStreamer[]>([]);
   const [searchValue, setSearchValue] = React.useState<string>("");
+  const [streamer, setStreamer] = React.useContext(StreamerContext);
 
   const getStreamers = async () => {
     try {
@@ -51,15 +53,16 @@ export const Streamers = () => {
     }
   }, [searchValue]);
 
-  const scrollToTop = () => {
+  const scrollToTop = (arg: TStreamer) => {
     window.scrollTo({
       top: 0,
     });
+    setStreamer(arg);
   };
 
   return (
     <div className="p-8 pt-0">
-      <nav className="h-18 w-full py-8">
+      <nav className="h-18 w-full">
         <input
           type="search"
           className="w-full h-full px-4 py-2 bg-zinc-600 rounded-xl outline-none text-white font-medium"
@@ -98,7 +101,7 @@ export const Streamers = () => {
               to={{
                 pathname: `/${streamer.login}/${streamer?.twitchId}`,
               }}
-              onClick={scrollToTop}
+              onClick={() => scrollToTop(streamer)}
             >
               <div>
                 <div className="relative z-100">
