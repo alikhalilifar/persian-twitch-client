@@ -60,34 +60,37 @@ export const StreamerSingle = () => {
     <div>
       <div className="h-[100vh] flex">
         <div className="bg-black group w-[calc(100%-300px)]">
-          <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
-            {quality.map((q, i) => (
-              <button
-                className={`${
-                  selectedQuality === i
-                    ? "bg-white backdrop-blur-lg text-black"
-                    : "border border-white text-white"
-                } rounded-md px-2 py-1`}
-                key={i}
-                onClick={() => {
-                  setSelectedQuality(i);
-                }}
-              >
-                {q}
-              </button>
-            ))}
-          </div>
           {retrievedM3u8 && (
-            <ReactHlsPlayer
-              src={retrievedM3u8}
-              autoPlay={true}
-              controls={true}
-              className="h-[100vh] w-[calc(100vw-300px)]"
-              playerRef={playerRef}
-              hlsConfig={{
-                startPosition: 10,
-              }}
-            />
+            <>
+              <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
+                {quality.map((q, i) => (
+                  <button
+                    className={`${
+                      selectedQuality === i
+                        ? "bg-white backdrop-blur-lg text-black"
+                        : "border border-white text-white"
+                    } rounded-md px-2 py-1`}
+                    key={i}
+                    onClick={() => {
+                      setSelectedQuality(i);
+                    }}
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
+
+              <ReactHlsPlayer
+                src={retrievedM3u8}
+                autoPlay={true}
+                controls={true}
+                className="h-[100vh] w-[calc(100vw-300px)]"
+                playerRef={playerRef}
+                hlsConfig={{
+                  startPosition: 10,
+                }}
+              />
+            </>
           )}
         </div>
         <div className="bg-zinc-900 w-[300px] h-[100vh] flex justify-end overflow-y-auto">
