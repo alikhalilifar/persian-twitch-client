@@ -2,7 +2,7 @@
   "name": "persian-twitch-client",
   "productName": "persian-twitch-client",
   "version": "1.6.0",
-  "description": "My Electron application description",
+  "description": "A client to watch your favorite Persian streamer",
   "main": ".webpack/main",
   "scripts": {
     "start": "electron-forge start",
