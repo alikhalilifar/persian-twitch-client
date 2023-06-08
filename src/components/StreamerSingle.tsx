@@ -6,6 +6,7 @@ import ReactHlsPlayer from "react-hls-player/dist";
 import { Chatbox } from "./Chatbox";
 import { StreamerPanel } from "./StreamerPanel";
 import { toast } from "react-hot-toast";
+import { config } from "../config/config";
 
 export const StreamerSingle = () => {
   const { streamer, twitchId } = useParams<{
@@ -38,7 +39,7 @@ export const StreamerSingle = () => {
     (async () => {
       try {
         const response = await fetch(
-          `https://tw-rly.fly.dev/streamer/${streamer}`
+          `https://${config.api}/streamer/${streamer}`
         );
         const data = await response.json();
         if (!data) return;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { EmoteObject } from "../types/types";
 import reactStringReplace from "react-string-replace";
 import { useParams } from "react-router-dom";
+import { config } from "../config/config";
 
 export const Chatbox = ({ id }: { id: string }) => {
   const [messages, setMessages] = useState<
@@ -35,7 +36,7 @@ export const Chatbox = ({ id }: { id: string }) => {
     const client = new tmi.Client({
       channels: [id as string],
       connection: {
-        server: "tw-chat-rly.fly.dev",
+        server: config.ws,
         port: 443,
         secure: true,
       },

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { StreamerPanel as StreamerPanelType } from "../types/types";
+import { config } from "../config/config";
 
 export const StreamerPanel = ({ id }: { id: string }) => {
   const [panels, setPanels] = useState<{ data: StreamerPanelType }>();
@@ -11,7 +12,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
     (async () => {
       try {
         const response = await fetch(
-          `https://tw-rly.fly.dev/streamer/${id}/panels`
+          `https://${config.api}/streamer/${id}/panels`
         );
         const [data] = await response.json();
         if (!data) return;
