@@ -64,4 +64,32 @@ export type TStreamer = {
   twitchId: string;
   uptime: number;
   viewers: number;
-}
+};
+
+export type StreamerExtensionPanel = {
+  id: string;
+  type: "EXTENSION";
+  slotID: string;
+  __typename: "ExtensionPanel";
+};
+
+export type StreamerDefaultPanel = {
+  id: string;
+  type: "DEFAULT";
+  slotID: string;
+  title: string | null;
+  imageURL: string | null;
+  linkURL: string | null;
+  description: string | null;
+  __typename: "DefaultPanel";
+};
+
+export type StreamerPanel = {
+  currentUser: string | null;
+  user: {
+    id: string;
+    cheer: any;
+    login: string;
+    panels: (StreamerDefaultPanel | StreamerExtensionPanel)[];
+  };
+};

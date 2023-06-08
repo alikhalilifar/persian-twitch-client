@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from "react";
 import { StreamUrls } from "../types/types";
 import ReactHlsPlayer from "react-hls-player/dist";
 import { Chatbox } from "./Chatbox";
+import { StreamerPanel } from "./StreamerPanel";
+import { toast } from "react-hot-toast";
 
 export const StreamerSingle = () => {
   const { streamer, twitchId } = useParams<{
@@ -40,15 +42,21 @@ export const StreamerSingle = () => {
         );
         const data = await response.json();
         if (!data) return;
+        if (!data.length) {
+          throw new Error("NO_STREAM");
+        }
         setStreamUrls(data);
       } catch (err) {
         console.error(err);
+        if (err?.message === "NO_STREAM") {
+          toast.error(`${streamer} is not live!`);
+        }
       }
     })();
   }, [streamer]);
 
   return (
-    <div className="scroll_enabled">
+    <div>
       <div className="h-[100vh] flex">
         <div className="bg-black group w-[calc(100%-300px)]">
           <div className="gap-2 mb-4 hidden group-hover:flex absolute top-0 left-0 z-10 fadeIn p-4">
@@ -85,7 +93,9 @@ export const StreamerSingle = () => {
           <Chatbox id={streamer} />
         </div>
       </div>
-      <Streamers />
+      <div className="py-8">
+        <StreamerPanel id={twitchId} />
+      </div>
     </div>
   );
 };
