@@ -35,7 +35,13 @@ export const StreamerPanel = ({ id }: { id: string }) => {
               target="_blank"
               className="flex justify-center"
             >
-              <img src={panel.imageURL} alt={panel.title} className="w-full" />
+              <img
+                src={`https://${config.api}/panel-images/${encodeURIComponent(
+                  panel.imageURL
+                )}`}
+                alt={panel.title}
+                className="w-full"
+              />
             </a>
             <div className="text-white text-sm">{panel.description}</div>
           </div>
