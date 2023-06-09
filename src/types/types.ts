@@ -144,3 +144,8 @@ export type StreamerBio = {
     };
   };
 };
+
+export type StreamerIcon = {
+  title: string;
+  icon: JSX.Element;
+};

@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import {
   SteamerSocialMedia,
   StreamerBio,
+  StreamerIcon,
   StreamerPanel as StreamerPanelType,
 } from "../types/types";
 import { config } from "../config/config";
@@ -147,36 +148,38 @@ export const StreamerPanel = ({ id }: { id: string }) => {
                 </div>
                 <div className="flex flex-col">
                   {streamerBio.data.user.channel.socialMedias.map(
-                    (socialMedia: SteamerSocialMedia) => (
-                      <a
-                        key={socialMedia.id}
-                        href={socialMedia.url}
-                        target="_blank"
-                        className="flex items-center mb-2 group [&:svg]:hover:fill-violet-500"
-                      >
-                        {socialMediaIcons.map(
-                          (socialMediaIcon: any) =>
-                            socialMedia.name === socialMediaIcon.title && (
-                              <div key={socialMediaIcon.title}>
-                                {socialMediaIcon.icon}
-                              </div>
-                            )
-                        )}
-                        <p className="ml-1 text-[#adadb8] group-hover:text-violet-500">
-                          {socialMedia.title}
-                        </p>
-                        <svg
-                          width="1.2rem"
-                          height="1.2rem"
-                          viewBox="0 0 20 20"
-                          aria-label="External social media link"
-                          fill="#adadb8"
-                          className="invisible group-hover:visible ml-1"
+                    (socialMedia: SteamerSocialMedia) => {
+                      const matchingIconObj = socialMediaIcons.find(
+                        (iconObj: StreamerIcon) =>
+                          iconObj.title === socialMedia.name
+                      );
+                      const iconToDisplay = matchingIconObj
+                        ? matchingIconObj.icon
+                        : socialMediaIcons[socialMediaIcons.length - 1].icon;
+                      return (
+                        <a
+                          key={socialMedia.id}
+                          href={socialMedia.url}
+                          target="_blank"
+                          className="flex items-center mb-2 group [&:svg]:hover:fill-violet-500"
                         >
-                          <path d="M6 8h5.293L5 14.293l1.414 1.414 6.293-6.293V15h2V6H6v2z"></path>
-                        </svg>
-                      </a>
-                    )
+                          {iconToDisplay}
+                          <p className="ml-1 text-[#adadb8] group-hover:text-violet-500">
+                            {socialMedia.title}
+                          </p>
+                          <svg
+                            width="1.2rem"
+                            height="1.2rem"
+                            viewBox="0 0 20 20"
+                            aria-label="External social media link"
+                            fill="#adadb8"
+                            className="invisible group-hover:visible ml-1"
+                          >
+                            <path d="M6 8h5.293L5 14.293l1.414 1.414 6.293-6.293V15h2V6H6v2z"></path>
+                          </svg>
+                        </a>
+                      );
+                    }
                   )}
                 </div>
               </div>
@@ -185,7 +188,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-4 px-8 max-w-5xl mx-auto   ">
+      <div className="grid grid-cols-3 gap-4 px-8 max-w-5xl mx-auto pt-8">
         {panels?.data?.user?.panels.map((panel, i) => {
           if (panel?.__typename !== "DefaultPanel") return;
           return (

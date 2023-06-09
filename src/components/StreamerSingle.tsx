@@ -1,5 +1,4 @@
 import { Link, useParams } from "react-router-dom";
-import { Streamers } from "./Streamers";
 import { useEffect, useRef, useState } from "react";
 import { StreamUrls } from "../types/types";
 import ReactHlsPlayer from "react-hls-player/dist";

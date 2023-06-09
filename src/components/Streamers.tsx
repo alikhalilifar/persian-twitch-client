@@ -8,7 +8,7 @@ export const Streamers = () => {
   const [streamers, setStreamers] = React.useState<TStreamer[]>([]);
   const [searchArray, setSearchArray] = React.useState<TStreamer[]>([]);
   const [searchValue, setSearchValue] = React.useState<string>("");
-  const [streamer, setStreamer] = React.useContext(StreamerContext);
+  const [, setStreamer] = React.useContext(StreamerContext);
 
   const getStreamers = async () => {
     try {
@@ -62,7 +62,7 @@ export const Streamers = () => {
 
   return (
     <div className="p-8 pt-0">
-      <nav className="h-18 w-full">
+      <nav className="h-18 w-full my-4">
         <input
           type="search"
           className="w-full h-full px-4 py-2 bg-zinc-600 rounded-xl outline-none text-white font-medium"
