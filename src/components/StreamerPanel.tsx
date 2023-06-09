@@ -84,7 +84,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
                         )}
                       </div>
                       <Link
-                        to="/vod"
+                        to="videos"
                         className="text-sm text-slate-400 hover:underline ml-4"
                       >
                         Videos
