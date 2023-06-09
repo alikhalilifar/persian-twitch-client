@@ -25,18 +25,30 @@ export const StreamerPanel = ({ id }: { id: string }) => {
           `https://${config.api}/streamer/${id}/panels`
         );
         const [data] = await response.json();
-        const bioResponse = await fetch(
-          `https://${config.api}/streamer/${data.data.user.login}/bio`
-        );
-        const [bioData] = await bioResponse.json();
-        if (!data || !bioData) return;
+        if (!data) return;
         setPanels(data);
-        setStreamerBio(bioData);
       } catch (err) {
         console.error(err);
       }
     })();
   }, [id]);
+
+  useEffect(() => {
+    if (!panels?.data) {
+      return;
+    }
+    (async () => {
+      try {
+        const response = await fetch(
+          `https://${config.api}/streamer/${panels.data.user.login}/bio`
+        );
+        const [data] = await response.json();
+        setStreamerBio(data);
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  }, [panels]);
 
   return (
     <div>

@@ -49,11 +49,11 @@ export const Videos = () => {
     })();
   }, []);
 
-  const scrollToTop = (arg: any) => {
+  const setInformation = (information: Vod) => {
     window.scrollTo({
       top: 0,
     });
-    setStreamerInformation(arg);
+    setStreamerInformation(information);
   };
 
   return (
@@ -108,7 +108,7 @@ export const Videos = () => {
                 to={{
                   pathname: `${vod.id}`,
                 }}
-                onClick={() => scrollToTop(vod)}
+                onClick={() => setInformation(vod)}
               >
                 <div>
                   <div className="relative z-100">
