@@ -16,7 +16,6 @@ export const StreamerSingle = () => {
   const [streamUrls, setStreamUrls] = useState<StreamUrls>();
   const [selectedQuality, setSelectedQuality] = useState<number>(2);
   const [retrievedM3u8, setRetrievedM3u8] = useState<string | null>(null);
-  const navigate = useNavigate();
 
   const quality = ["1080", "720", "480", "360", "160", "Sound"];
 
@@ -58,15 +57,12 @@ export const StreamerSingle = () => {
         }
       }
     })();
-  }, [streamer]);
+  }, [streamer, videoId]);
 
   return (
-    <div>
-      <div className="h-[100vh] flex">
-        <div
-          className="bg-black group relative"
-          style={{ width: videoId ? "100%" : "calc(100%-300px)" }}
-        >
+    <>
+      <div className="h-[100vh] flex w-full">
+        <div className="bg-black group relative grow">
           <div className="gap-2 mb-4 hidden group-hover:flex justify-between w-full absolute top-0 left-0 z-10 fadeIn p-4">
             <Link to={videoId ? `/${streamer}/${twitchId}/videos` : `/`}>
               <div className="text-white rounded-md py-1 flex items-center gap-1">
@@ -111,7 +107,7 @@ export const StreamerSingle = () => {
               autoPlay={true}
               controls={true}
               className="h-[100vh] w-[calc(100vw-300px)]"
-              style={{ width: videoId ? "100%" : "calc(100%-300px)" }}
+              style={videoId ? { width: "100%", height: "100%" } : undefined}
               playerRef={playerRef}
               hlsConfig={{
                 startPosition: 10,
@@ -128,6 +124,6 @@ export const StreamerSingle = () => {
       <div className="py-8 pt-0 bg-black/60">
         <StreamerPanel id={twitchId} />
       </div>
-    </div>
+    </>
   );
 };
