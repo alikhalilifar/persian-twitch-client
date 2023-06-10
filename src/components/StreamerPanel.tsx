@@ -52,7 +52,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
 
   return (
     <div>
-      <div className="bg-black bg-opacity-60">
+      <div>
         <div className="max-w-5xl mx-auto px-8 py-5">
           {streamerBio?.data?.user && (
             <div>
@@ -111,7 +111,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
                   </div>
                 </div>
               </div>
-              <div className="bg-zinc-800 p-7 flex justify-between">
+              <div className="bg-zinc-800 rounded p-7 flex justify-between">
                 <div className="flex flex-col">
                   <div className="flex items-center mb-1">
                     <h5 className="font-bold text-white text-lg">
@@ -176,7 +176,7 @@ export const StreamerPanel = ({ id }: { id: string }) => {
                           className="flex items-center mb-2 group [&:svg]:hover:fill-violet-500"
                         >
                           {iconToDisplay}
-                          <p className="ml-1 text-[#adadb8] group-hover:text-violet-500">
+                          <p className="ml-1 text-[#adadb8] group-hover:text-violet-500 capitalize font-medium text-sm">
                             {socialMedia.title}
                           </p>
                           <svg

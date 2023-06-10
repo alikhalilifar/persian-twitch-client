@@ -125,7 +125,7 @@ export const StreamerSingle = () => {
           </div>
         )}
       </div>
-      <div className="py-8 pt-0">
+      <div className="py-8 pt-0 bg-black/60">
         <StreamerPanel id={twitchId} />
       </div>
     </div>
