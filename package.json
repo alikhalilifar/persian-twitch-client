@@ -1,7 +1,7 @@
 {
   "name": "persian-twitch-client",
   "productName": "persian-twitch-client",
-	"version": "1.7.0",
+  "version": "1.7.1",
   "description": "A client to watch your favorite Persian streamer",
   "main": ".webpack/main",
   "scripts": {
