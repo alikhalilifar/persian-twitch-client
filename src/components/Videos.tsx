@@ -59,7 +59,7 @@ export const Videos = () => {
   return (
     <div className="p-8 pt-0">
       <Link
-        className="text-white rounded-md py-1 flex items-center gap-1 cursor-pointer mt-2 mb-4"
+        className="text-white rounded-md py-3 flex items-center gap-1 cursor-pointer mt-2 mb-4"
         to={`/${streamer}/${twitchId}`}
       >
         <svg
@@ -76,6 +76,9 @@ export const Videos = () => {
         </svg>
         Back to Stream
       </Link>
+      <h1 className="text-3xl font-bold mb-6 text-white capitalize">
+        {streamer} Videos
+      </h1>
       <ul
         className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8 xl:gap-12"
         style={{ direction: "ltr" }}
@@ -112,13 +115,6 @@ export const Videos = () => {
               >
                 <div>
                   <div className="relative z-100">
-                    {/* <a
-												href={`https://sub.dono.gg/${streamer?.login}`}
-												className="buy-subscription px-2 py-1 absolute right-0 mr-3 mt-3 rounded-lg items-center gap-2 inline-flex bg-[#111827]/80"
-											>
-												<div className="text-white text-xs">خرید اشتراک</div>
-											</a> */}
-
                     <div className="viewer px-2 py-1 absolute ml-3 mt-3 rounded-lg items-center gap-2 inline-flex bg-[#111827]/80">
                       <svg
                         width="14"
@@ -154,7 +150,11 @@ export const Videos = () => {
                   </div>
                   <div className="p-4 text-left" style={{ direction: "ltr" }}>
                     <div className="flex ">
-                      <div className="relative h-10 z-10 items-center gap-2 inline-flex -mt-10 px-4 shadow-lg mb-4 backdrop-blur-2xl rounded-full">
+                      <div
+                        className={`relative h-10 z-10 items-center gap-2 inline-flex -mt-10 ${
+                          streamerInformation?.profileUrl ? "pr-4" : "px-4"
+                        } shadow-lg mb-4 backdrop-blur-2xl rounded-full`}
+                      >
                         {streamerInformation?.profileUrl && (
                           <img
                             src={streamerInformation?.profileUrl}
