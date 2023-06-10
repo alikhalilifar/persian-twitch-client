@@ -154,12 +154,14 @@ export const Videos = () => {
                   </div>
                   <div className="p-4 text-left" style={{ direction: "ltr" }}>
                     <div className="flex ">
-                      <div className="relative z-10 items-center gap-2 inline-flex -mt-10 pl-1 pr-4 shadow-lg mb-4 backdrop-blur-2xl rounded-full p-1">
-                        <img
-                          src={streamerInformation?.profileUrl}
-                          alt={vod?.user_name}
-                          className="w-10 h-10 rounded-full"
-                        />
+                      <div className="relative h-10 z-10 items-center gap-2 inline-flex -mt-10 px-4 shadow-lg mb-4 backdrop-blur-2xl rounded-full">
+                        {streamerInformation?.profileUrl && (
+                          <img
+                            src={streamerInformation?.profileUrl}
+                            alt={vod?.user_name}
+                            className="w-10 h-10 rounded-full"
+                          />
+                        )}
 
                         <h3 className="text-white font-bold text-sm">
                           {vod?.user_name}
