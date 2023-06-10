@@ -6,13 +6,22 @@ import {
   StreamerPanel as StreamerPanelType,
 } from "../types/types";
 import { config } from "../config/config";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { socialMediaIcons } from "../utils/socialMedia";
 import { StreamerContext } from "../app";
 
 export const StreamerPanel = ({ id }: { id: string }) => {
   const [panels, setPanels] = useState<{ data: StreamerPanelType }>();
   const [streamerBio, setStreamerBio] = useState<{ data: StreamerBio }>();
+  const {
+    streamer: streamerUsername,
+    twitchId,
+    videoId,
+  } = useParams<{
+    streamer: string;
+    twitchId: string;
+    videoId: string;
+  }>();
   const [streamer] = useContext(StreamerContext);
   useEffect(() => {
     if (!id) {
@@ -58,21 +67,23 @@ export const StreamerPanel = ({ id }: { id: string }) => {
             <div>
               <div className="flex items-center mb-5">
                 <div className="flex">
-                  <div
-                    className={`w-16 h-16 p-0.5 border-2 border-solid rounded-full relative`}
-                    style={{
-                      borderColor: `#${streamerBio.data.user.primaryColorHex}`,
-                    }}
-                  >
-                    <img
-                      className="rounded-full"
-                      src={streamerBio.data.user.profileImageURL}
-                      alt={streamerBio.data.user.displayName}
-                    />
-                    <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-1 bg-red-600 text-sm text-white font-bold rounded">
-                      LIVE
-                    </span>
-                  </div>
+                  <Link to={`/${streamerUsername}/${twitchId}`}>
+                    <div
+                      className={`w-16 h-16 p-0.5 border-2 border-solid rounded-full relative`}
+                      style={{
+                        borderColor: `#${streamerBio.data.user.primaryColorHex}`,
+                      }}
+                    >
+                      <img
+                        className="rounded-full"
+                        src={streamerBio.data.user.profileImageURL}
+                        alt={streamerBio.data.user.displayName}
+                      />
+                      <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 px-1 bg-red-600 text-sm text-white font-bold rounded">
+                        LIVE
+                      </span>
+                    </div>
+                  </Link>
                   <div className="ml-2 flex flex-col justify-between">
                     <div className="flex items-center">
                       <div className="flex items-center">
