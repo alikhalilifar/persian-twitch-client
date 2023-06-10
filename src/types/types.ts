@@ -93,3 +93,78 @@ export type StreamerPanel = {
     panels: (StreamerDefaultPanel | StreamerExtensionPanel)[];
   };
 };
+
+export type SteamerSocialMedia = {
+  id: string;
+  name: string;
+  title: string;
+  url: string;
+};
+
+export type SteamerVideos = {
+  node: {
+    id: string;
+    game: {
+      id: string;
+      displayName: string;
+    };
+    status: string;
+  };
+};
+
+export type StreamerBio = {
+  user: {
+    id: string;
+    description: string;
+    displayName: string;
+    isPartner: boolean;
+    primaryColorHex: string;
+    profileImageURL: string;
+    followers: {
+      totalCount: number;
+    };
+    channel: {
+      id: string;
+      socialMedias: SteamerSocialMedia[];
+    };
+    lastBroadcast: {
+      id: string;
+      game: {
+        id: string;
+        displayName: string;
+      };
+    };
+    primaryTeam: {
+      id: string;
+      name: string;
+      displayName: string;
+    };
+    videos: {
+      edges: SteamerVideos[];
+    };
+  };
+};
+
+export type StreamerIcon = {
+  title: string;
+  icon: JSX.Element;
+};
+
+export type Vod = {
+  id: string;
+  stream_id: string;
+  user_id: string;
+  user_login: string;
+  user_name: string;
+  title: string;
+  description: string;
+  created_at: string;
+  published_at: string;
+  url: string;
+  thumbnail_url: string;
+  viewable: string;
+  view_count: number;
+  language: string;
+  type: string;
+  duration: string;
+};
